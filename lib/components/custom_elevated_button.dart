@@ -18,7 +18,10 @@ class CustomElevatedButton extends StatelessWidget {
       margin: const EdgeInsets.all(15),
       child: ElevatedButton(
         onPressed: onPressed,
-        child: Text(label),
+        child: Text(
+          label,
+          style: TextStyle(color: Colors.black),
+        ),
       ),
     );
   }

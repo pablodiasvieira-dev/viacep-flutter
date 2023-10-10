@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_viacep/blocs/enum/bloc_status.dart';
-import 'package:flutter_viacep/blocs/search/search_cep_blocs_exports.dart';
+import 'package:flutter_viacep/blocs/register/register_blocs_exports.dart';
+import 'package:flutter_viacep/blocs/search/search_cep_bloc.dart';
+import 'package:flutter_viacep/components/address_empty.dart';
 import 'package:flutter_viacep/components/cep_information_card.dart';
 import 'package:flutter_viacep/components/error_message_app.dart';
+import 'package:flutter_viacep/models/cep_model.dart';
 import 'package:flutter_viacep/screens/register_cep_screen.dart';
-import 'package:flutter_viacep/utils/assets_manager.dart';
 import 'package:flutter_viacep/utils/colors.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -55,7 +57,6 @@ class _SearchCepScreenState extends State<SearchCepScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Image.asset(AssetsManager.imageLogo),
                       const SizedBox(width: 10),
                       Text(
                         'Busca CEP',
@@ -76,16 +77,23 @@ class _SearchCepScreenState extends State<SearchCepScreen> {
                       controller: _cepController,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12.0),
+                            borderRadius: BorderRadius.circular(25.0),
                           ),
-                          hintText: 'Informe um cep*',
+                          enabledBorder: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(25)),
+                            borderSide:
+                                BorderSide(color: Colors.white, width: 3.0),
+                          ),
+                          hintText: 'Digite um CEP',
                           suffixIcon: IconButton(
                             iconSize: 35,
                             onPressed: _submitForm,
                             icon: const Icon(Icons.search),
                           ),
                           hintStyle: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w400)),
+                              color: Color.fromARGB(255, 206, 245, 31),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400)),
                       inputFormatters: [
                         MaskTextInputFormatter(
                           mask: '#####-###',
@@ -107,6 +115,7 @@ class _SearchCepScreenState extends State<SearchCepScreen> {
                 ),
               ],
             ),
+            automaticallyImplyLeading: false,
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(2),
               child: Container(
@@ -125,11 +134,21 @@ class _SearchCepScreenState extends State<SearchCepScreen> {
                   case BlocStatus.loading:
                     return const CircularProgressIndicator();
                   case BlocStatus.success:
-                    if (state.isRegisteredCep) {
-                      return AddressEmpty(cepController: _cepController);
+                    final CepModel address = state.address!;
+
+                    if (address.bairro.isEmpty) {
+                      return const AddressEmpty();
                     } else {
-                      return CepInformationCard(address: state.address!);
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CepInformationCard(address: address),
+                          if (state.isRegisteredCep == false)
+                            UnregisteredAddress(address: address),
+                        ],
+                      );
                     }
+
                   case BlocStatus.error:
                     return ErrorMessageViaCep(
                       errorMessage: state.errorMessage!,
@@ -148,23 +167,19 @@ class _SearchCepScreenState extends State<SearchCepScreen> {
   }
 }
 
-class AddressEmpty extends StatelessWidget {
-  const AddressEmpty({
+class UnregisteredAddress extends StatelessWidget {
+  const UnregisteredAddress({
     super.key,
-    required TextEditingController cepController,
-  }) : _cepController = cepController;
+    required CepModel address,
+  }) : _address = address;
 
-  final TextEditingController _cepController;
+  final CepModel _address;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          'CEP não encontrado',
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
         Container(
           width: 200,
           height: 50,
@@ -174,13 +189,13 @@ class AddressEmpty extends StatelessWidget {
               'Cadastrar CEP',
             ),
             onPressed: () {
-              // Navigator.push(
-              //   // context,
-              //   // MaterialPageRoute(
-              //   //     builder: (context) => RegisterCepScreen(
-              //   //           inicialCep: _cepController.text,
-              //   //         )),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => RegisterCepScreen(
+                          address: _address,
+                        )),
+              );
             },
           ),
         )

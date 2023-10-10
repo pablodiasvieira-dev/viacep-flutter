@@ -23,11 +23,11 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<BottomNavigationBarItem> _bottomNavigationBarItems = [
     const BottomNavigationBarItem(
       icon: Icon(Icons.home),
-      label: 'Home',
+      label: 'Busca',
     ),
     const BottomNavigationBarItem(
       icon: Icon(Icons.edit_note),
-      label: 'Cadastrados',
+      label: 'Registros',
     ),
   ];
 

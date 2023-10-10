@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_viacep/utils/colors.dart';
 
 class AddressEmpty extends StatelessWidget {
   const AddressEmpty({
@@ -14,10 +13,10 @@ class AddressEmpty extends StatelessWidget {
         const Icon(
           Icons.error,
           size: 40.0,
-          color: AppColors.secondaryColor,
+          color: Color.fromARGB(255, 255, 255, 255),
         ),
         Text(
-          'Cep não encontrado...',
+          'CEP Inexistente',
           style: Theme.of(context).textTheme.titleMedium,
         ),
       ],

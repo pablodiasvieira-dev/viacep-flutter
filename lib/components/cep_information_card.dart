@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_viacep/components/animated_icon_search.dart';
 import 'package:flutter_viacep/models/cep_model.dart';
 
 class CepInformationCard extends StatelessWidget {
@@ -14,9 +13,6 @@ class CepInformationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        AnimatedIconSearch(
-          sizeIcon: MediaQuery.of(context).size.height / 8,
-        ),
         Text(
           address.cep,
           style: Theme.of(context).textTheme.titleLarge,

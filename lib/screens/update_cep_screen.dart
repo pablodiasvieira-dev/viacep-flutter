@@ -173,13 +173,13 @@ class _UpdateCepScreenState extends State<UpdateCepScreen> {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content:
-                                  Text('Atualização realizada com sucesso!'),
+                                  Text('Atualização realizada!'),
                               duration: Duration(seconds: 1),
                             ),
                           );
                         }
                       },
-                      child: const Text('Atualizar endereço')),
+                      child: const Text('Atualizar o Endereço')),
                 ),
               ],
             ),

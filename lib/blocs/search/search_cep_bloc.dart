@@ -36,7 +36,7 @@ class SearchCepBloc extends Bloc<SearchCepEvent, SearchCepState> {
     } catch (error) {
       emit(state.copyWith(
           status: BlocStatus.error,
-          errorMessage: 'Error loading data ViaCep...'));
+          errorMessage: 'Erro de Carregamento do ViaCEP'));
     }
   }
 

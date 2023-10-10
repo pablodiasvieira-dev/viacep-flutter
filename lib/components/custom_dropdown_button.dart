@@ -51,14 +51,24 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
         items: _stateAbbreviations.map((item) {
           return DropdownMenuItem(
             value: item,
-            child: Text(item),
+            child: Text(
+              item,
+              style: const TextStyle(color: Color.fromARGB(255, 207, 207, 7)),
+            ),
           );
         }).toList(),
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.0),
           ),
+          enabledBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(25)),
+            borderSide: BorderSide(color: Colors.white, width: 3.0),
+          ),
           labelText: 'UF',
+          labelStyle: const TextStyle(
+            color: Colors.white,
+          ),
           floatingLabelBehavior: FloatingLabelBehavior.always,
         ),
       ),

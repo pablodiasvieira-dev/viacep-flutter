@@ -4,7 +4,6 @@ import 'package:flutter_viacep/blocs/register/register_blocs_exports.dart';
 import 'package:flutter_viacep/components/error_message_app.dart';
 import 'package:flutter_viacep/models/cep_model.dart';
 import 'package:flutter_viacep/screens/update_cep_screen.dart';
-import 'package:flutter_viacep/utils/assets_manager.dart';
 import 'package:flutter_viacep/utils/colors.dart';
 
 class HistoryScreen extends StatefulWidget {
@@ -57,7 +56,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
                       return ListTile(
                         contentPadding: const EdgeInsets.all(10),
-                        leading: Image.asset(AssetsManager.imageIconSearch),
                         title: Text(
                           address.cep,
                           style: Theme.of(context).textTheme.titleMedium,

@@ -7,7 +7,6 @@ import 'package:flutter_viacep/components/custom_elevated_button.dart';
 import 'package:flutter_viacep/components/text_form_field_register.dart';
 import 'package:flutter_viacep/models/cep_model.dart';
 import 'package:flutter_viacep/screens/home_screen.dart';
-import 'package:flutter_viacep/utils/colors.dart';
 
 class RegisterCepScreen extends StatefulWidget {
   final CepModel address;
@@ -85,12 +84,12 @@ class _RegisterCepScreenState extends State<RegisterCepScreen> {
                     title: const Text('Cadastro de Endereço'),
                     leading: BackButton(
                       onPressed: () => Navigator.of(context).pop(),
-                      color: AppColors.primaryColor,
+                      color: const Color.fromARGB(255, 255, 255, 254),
                     ),
                     bottom: PreferredSize(
                       preferredSize: const Size.fromHeight(2),
                       child: Container(
-                        color: AppColors.secondaryColor,
+                        color: const Color.fromARGB(255, 255, 255, 255),
                         height: 2,
                       ),
                     ),
@@ -181,20 +180,22 @@ class _RegisterCepScreenState extends State<RegisterCepScreen> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const HomeScreen(initialIndex: 1,)),
+                                              const HomeScreen(
+                                                initialIndex: 1,
+                                              )),
                                     );
                                   } else if (state.status == BlocStatus.error) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
-                                        content:
-                                            Text('Erro ao cadastrar endereço!'),
+                                        content: Text(
+                                            'Erro ao cadastrar o endereço'),
                                         duration: Duration(seconds: 1),
                                       ),
                                     );
                                   }
                                 }
                               },
-                              label: 'Cadastrar Endereço'),
+                              label: 'Cadastrar o Endereço'),
                         ],
                       ),
                     ),

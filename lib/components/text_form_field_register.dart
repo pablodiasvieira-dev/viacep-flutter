@@ -24,7 +24,14 @@ class TextFormFieldRegister extends StatelessWidget {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.0),
           ),
+          enabledBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(25)),
+            borderSide: BorderSide(color: Colors.white, width: 3.0),
+          ),
           labelText: label,
+          labelStyle: const TextStyle(
+            color: Colors.white,
+          ),
           floatingLabelBehavior: FloatingLabelBehavior.always,
         ),
       ),

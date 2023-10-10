@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_viacep/utils/assets_manager.dart';
 import 'package:flutter_viacep/utils/colors.dart';
 import 'package:flutter_viacep/utils/no_transition_screen.dart';
 
@@ -7,14 +6,12 @@ abstract class AppTheme {
   static ThemeData get light => ThemeData(
       primarySwatch: AppColors.colorPrimarySwatch,
       visualDensity: VisualDensity.adaptivePlatformDensity,
-      fontFamily: AssetsManager.fontFamily,
-      scaffoldBackgroundColor: AppColors.colorBackground,
-      appBarTheme: AppBarTheme(
-        backgroundColor: AppColors.colorBackground,
+      scaffoldBackgroundColor: Color.fromARGB(255, 0, 0, 0),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Color.fromARGB(255, 0, 0, 0),
         titleTextStyle: TextStyle(
-            fontFamily: AssetsManager.fontFamily,
             fontSize: 20.0,
-            color: AppColors.primaryColor,
+            color: Color.fromARGB(255, 255, 255, 255),
             fontWeight: FontWeight.bold),
       ),
       textTheme: _buildTextTheme(),
@@ -41,17 +38,17 @@ abstract class AppTheme {
       titleLarge: TextStyle(
         fontSize: 38.0,
         fontWeight: FontWeight.bold,
-        color: Colors.black,
+        color: Color.fromARGB(255, 255, 255, 255),
       ),
       titleMedium: TextStyle(
         fontSize: 22.0,
         fontWeight: FontWeight.bold,
-        color: Colors.black,
+        color: Color.fromARGB(255, 255, 255, 255),
       ),
       titleSmall: TextStyle(
         fontSize: 20.0,
         fontWeight: FontWeight.w600,
-        color: Colors.black,
+        color: Color.fromARGB(255, 255, 255, 255),
       ),
     );
   }

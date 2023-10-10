@@ -31,7 +31,7 @@ class AppColors {
 
   static MaterialColor colorPrimarySwatch = createMaterialColor(primaryColor);
 
-  static const Color primaryColor = Color(0XFF053d6b);
-  static const Color secondaryColor = Color(0XFFFFD400);
-  static const Color colorBackground = Color(0xFFf5f3f0);
+  static const Color primaryColor = Color.fromARGB(255, 245, 225, 11);
+  static const Color secondaryColor = Color.fromARGB(255, 245, 225, 11);
+  static const Color colorBackground = Color.fromARGB(255, 0, 0, 0);
 }
